@@ -1,0 +1,44 @@
+using AppExtratoBancario.API.Data;
+using AppExtratoBancario.API.Data.Repositories;
+using AppExtratoBancario.API.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<InMemoryDatabase>();
+
+// Registro de dependências para repositório e unidade de trabalho
+builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
+builder.Services.AddScoped<IBancoUnitOfWork, UnitOfWork>();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=ExtratoBancario}/{action=GetTransacoes}/{id?}");
+
+app.Run();

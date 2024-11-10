@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "AppExtratoBancario.API.Controllers.ExtratoBancarioController",
+    "Method": "GetTransacoes",
+    "RelativePath": "transacoes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AppExtratoBancario.API.Controllers.ExtratoBancarioController",
+    "Method": "GetTransacoesPdf",
+    "RelativePath": "transacoes/pdf",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
